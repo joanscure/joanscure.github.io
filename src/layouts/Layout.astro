@@ -92,6 +92,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         const max = document.documentElement.scrollHeight - window.innerHeight;
         if (progressBar) progressBar.style.transform = `scaleX(${window.scrollY / max})`;
       }, { passive: true });
+
+      // Card spotlight — radial gradient follows the cursor inside each card
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          (card as HTMLElement).style.setProperty('--mouse-x', (e.clientX - r.left) + 'px');
+          (card as HTMLElement).style.setProperty('--mouse-y', (e.clientY - r.top) + 'px');
+        }, { passive: true });
+        card.addEventListener('mouseleave', () => {
+          (card as HTMLElement).style.setProperty('--mouse-x', '-9999px');
+          (card as HTMLElement).style.setProperty('--mouse-y', '-9999px');
+        });
+      });
     </script>
   </body>
 </html>
