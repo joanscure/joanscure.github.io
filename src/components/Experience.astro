@@ -1,0 +1,106 @@
+---
+import { experiences } from '@/data/experiences';
+---
+
+<section id="experience" class="py-24 md:py-36">
+  <div class="section">
+
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--color-primary-light)] uppercase tracking-widest mb-4">
+        <span class="w-6 h-px bg-[var(--color-primary)]"></span>
+        Experience
+        <span class="w-6 h-px bg-[var(--color-primary)]"></span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text)] mb-4">
+        Where I've built things
+      </h2>
+      <p class="text-[var(--color-text-muted)] max-w-xl mx-auto text-sm md:text-base">
+        From startups to enterprise clients, each role pushed me to grow further — technically and as a leader.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative max-w-4xl mx-auto">
+      <!-- Center line (desktop only) -->
+      <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--color-primary)] via-[var(--color-border)] to-transparent -translate-x-1/2 hidden md:block"></div>
+
+      <div class="space-y-10 md:space-y-14">
+        {experiences.map((exp, i) => (
+          <div class={`relative flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-0 md:gap-8 reveal`} style={`transition-delay: ${i * 80}ms`}>
+
+            <!-- Timeline dot (desktop) -->
+            <div class="hidden md:block absolute left-1/2 top-10 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-[var(--color-primary)] border-2 border-[var(--color-background)] shadow-[0_0_10px_var(--color-primary-glow)] z-10"></div>
+
+            <!-- Card -->
+            <div class={`md:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'}`}>
+              <div class="card p-6 md:p-8">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <h3 class="text-lg font-bold text-[var(--color-text)]">{exp.company}</h3>
+                      {exp.current && (
+                        <span class="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wide bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full">
+                          Current
+                        </span>
+                      )}
+                    </div>
+                    <p class="text-sm font-semibold text-[var(--color-primary-light)]">{exp.role}</p>
+                    <p class="text-xs text-[var(--color-text-subtle)] mt-1 flex items-center gap-1.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      {exp.location}
+                    </p>
+                  </div>
+                  <span class="text-xs font-mono text-[var(--color-text-subtle)] shrink-0 sm:text-right">{exp.period}</span>
+                </div>
+
+                <p class="text-sm text-[var(--color-text-muted)] mb-5 leading-relaxed">{exp.description}</p>
+
+                <!-- Highlights -->
+                <ul class="space-y-3 mb-6">
+                  {exp.highlights.map(item => (
+                    <li class="flex gap-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] shrink-0"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <!-- Stack pills -->
+                <div class="flex flex-wrap gap-2 pt-4 border-t border-[var(--color-border)]">
+                  {exp.stack.map(tech => (
+                    <span class="px-2.5 py-1 text-xs font-mono bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/20 text-[var(--color-primary-light)] rounded-md">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-16 max-w-4xl mx-auto reveal">
+      <div class="text-center mb-6">
+        <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--color-primary-light)] uppercase tracking-widest">
+          <span class="w-6 h-px bg-[var(--color-primary)]"></span>
+          Education
+          <span class="w-6 h-px bg-[var(--color-primary)]"></span>
+        </div>
+      </div>
+      <div class="card p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+        <div class="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 flex items-center justify-center text-[var(--color-primary-light)] shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-[var(--color-text)]">Universidad Nacional de Piura</h3>
+          <p class="text-sm text-[var(--color-primary-light)] mt-0.5">B.S. Computer Engineering — Ingeniería Informática</p>
+          <p class="text-xs text-[var(--color-text-subtle)] mt-1">Piura, Peru &nbsp;·&nbsp; 2016 – 2023</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
