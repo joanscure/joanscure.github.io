@@ -1,0 +1,117 @@
+---
+const CDN = 'https://cdn.simpleicons.org';
+
+const categories = [
+  {
+    title: 'Frontend & Mobile',
+    techs: [
+      { name: 'Angular',      icon: `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg` },
+      { name: 'React',        icon: `${CDN}/react` },
+      { name: 'TypeScript',   icon: `${CDN}/typescript` },
+      { name: 'Next.js',      icon: `${CDN}/nextdotjs/ffffff` },
+      { name: 'React Native', icon: `${CDN}/react/61DAFB` },
+      { name: 'Flutter',      icon: `${CDN}/flutter` },
+    ],
+  },
+  {
+    title: 'Backend & APIs',
+    techs: [
+      { name: 'Node.js',      icon: `${CDN}/nodedotjs` },
+      { name: 'NestJS',       icon: `${CDN}/nestjs` },
+      { name: 'Spring Boot',  icon: `${CDN}/springboot` },
+      { name: 'Laravel',      icon: `${CDN}/laravel` },
+      { name: 'GraphQL',      icon: `${CDN}/graphql` },
+      { name: 'PHP',          icon: `${CDN}/php` },
+    ],
+  },
+  {
+    title: 'Cloud & DevOps',
+    techs: [
+      { name: 'Docker',       icon: `${CDN}/docker` },
+      { name: 'Azure',        icon: `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg` },
+      { name: 'AWS',          icon: `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg` },
+      { name: 'Firebase',     icon: `${CDN}/firebase` },
+      { name: 'Jenkins',      icon: `${CDN}/jenkins` },
+      { name: 'GitHub Actions', icon: `${CDN}/githubactions/ffffff` },
+    ],
+  },
+  {
+    title: 'Databases',
+    techs: [
+      { name: 'PostgreSQL',   icon: `${CDN}/postgresql` },
+      { name: 'MongoDB',      icon: `${CDN}/mongodb` },
+      { name: 'Redis',        icon: `${CDN}/redis` },
+      { name: 'OpenSearch',   icon: `${CDN}/opensearch/ffffff` },
+    ],
+  },
+];
+
+const extraBadges = [
+  'SOLID', 'DDD', 'Microservices', 'REST', 'gRPC',
+  'WebSockets', 'Jest', 'SCRUM', 'CI/CD', 'Clean Code',
+  'Tech Leadership', 'Event-Driven Arch.',
+];
+---
+
+<section id="skills" class="py-24 md:py-36 bg-[var(--color-surface)]/30">
+  <div class="section">
+
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--color-primary-light)] uppercase tracking-widest mb-4">
+        <span class="w-6 h-px bg-[var(--color-primary)]"></span>
+        Technical Skills
+        <span class="w-6 h-px bg-[var(--color-primary)]"></span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text)] mb-4">
+        Tools of the trade
+      </h2>
+      <p class="text-[var(--color-text-muted)] max-w-xl mx-auto text-sm md:text-base">
+        Seven years building across the full stack — from pixel-perfect UIs to distributed backends.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-5 mb-12">
+      {categories.map((cat, i) => (
+        <div class="card p-6 md:p-8 reveal" style={`transition-delay: ${i * 80}ms`}>
+          <h3 class="text-xs font-mono font-semibold text-[var(--color-primary-light)] uppercase tracking-widest mb-6">
+            {cat.title}
+          </h3>
+          <div class="grid grid-cols-3 gap-3">
+            {cat.techs.map(tech => (
+              <div class="tech-item group flex flex-col items-center gap-2.5 p-3 rounded-xl hover:bg-[var(--color-surface-2)] transition-all duration-200 cursor-default">
+                <div class="w-9 h-9 flex items-center justify-center">
+                  <img
+                    src={tech.icon}
+                    alt={tech.name}
+                    width="36"
+                    height="36"
+                    loading="lazy"
+                    class="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-200"
+                    onerror="this.style.display='none'"
+                  />
+                </div>
+                <span class="text-[11px] font-medium text-[var(--color-text-subtle)] group-hover:text-[var(--color-text-muted)] text-center leading-tight transition-colors duration-200">
+                  {tech.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="reveal">
+      <p class="text-center text-[10px] font-mono text-[var(--color-text-subtle)] uppercase tracking-widest mb-4">
+        Methodologies & practices
+      </p>
+      <div class="flex flex-wrap justify-center gap-2">
+        {extraBadges.map(b => (
+          <span class="px-3 py-1.5 text-xs font-mono bg-[var(--color-surface-2)] border border-[var(--color-border)] text-[var(--color-text-muted)] rounded-full hover:border-[var(--color-primary-light)] hover:text-[var(--color-primary-light)] transition-all duration-200 cursor-default">
+            {b}
+          </span>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
