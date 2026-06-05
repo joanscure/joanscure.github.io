@@ -37,13 +37,13 @@
 
     <div class="stats-grid">
       {[
-        { value: '7+',  label: 'Years of experience' },
-        { value: '5',   label: 'Industries served' },
-        { value: '15+', label: 'Projects shipped' },
-        { value: '3',   label: 'Countries worked in' },
-      ].map(({ value, label }) => (
+        { count: '7',  suffix: '+', label: 'Years of experience' },
+        { count: '5',  suffix: '',  label: 'Industries served' },
+        { count: '15', suffix: '+', label: 'Projects shipped' },
+        { count: '3',  suffix: '',  label: 'Countries worked in' },
+      ].map(({ count, suffix, label }) => (
         <div class="stat-item">
-          <div class="stat-value gradient-text">{value}</div>
+          <div class="stat-value gradient-text" data-count={count} data-suffix={suffix}>{count}{suffix}</div>
           <div class="stat-label">{label}</div>
         </div>
       ))}

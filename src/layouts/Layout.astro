@@ -105,6 +105,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           (card as HTMLElement).style.setProperty('--mouse-y', '-9999px');
         });
       });
+
+      // Stats counter animation — numbers count up with ease-out cubic when entering viewport
+      document.querySelectorAll<HTMLElement>('[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count ?? '0');
+        const suffix = el.dataset.suffix ?? '';
+        let done = false;
+        const io = new IntersectionObserver(([entry]) => {
+          if (!entry.isIntersecting || done) return;
+          done = true;
+          const duration = 1600;
+          let start: number | null = null;
+          const tick = (ts: number) => {
+            if (!start) start = ts;
+            const p = Math.min((ts - start) / duration, 1);
+            el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          io.disconnect();
+        }, { threshold: 0.5 });
+        io.observe(el);
+      });
     </script>
   </body>
 </html>
