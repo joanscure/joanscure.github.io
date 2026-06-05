@@ -127,6 +127,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         }, { threshold: 0.5 });
         io.observe(el);
       });
+
+      // Magnetic buttons — hero CTAs subtly follow the cursor for a physical feel
+      document.querySelectorAll<HTMLElement>('#hero .btn').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          const x = (e.clientX - r.left - r.width / 2) * 0.3;
+          const y = (e.clientY - r.top - r.height / 2) * 0.3;
+          btn.style.transition = 'transform 0.12s ease, background-color 0.2s ease, box-shadow 0.2s ease';
+          btn.style.transform = `translate(${x}px, ${y}px)`;
+        }, { passive: true });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1), background-color 0.2s ease, box-shadow 0.2s ease';
+          btn.style.transform = '';
+        });
+      });
     </script>
   </body>
 </html>
