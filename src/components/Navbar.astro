@@ -1,0 +1,89 @@
+---
+const links = [
+  { label: 'About', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#hero" class="font-mono text-sm font-medium text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors duration-200">
+      <span class="text-[var(--color-text-subtle)]">&lt;</span>JL<span class="text-[var(--color-text-subtle)]">/&gt;</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      {links.map(({ label, href }) => (
+        <a
+          href={href}
+          class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200 relative group"
+        >
+          {label}
+          <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-[var(--color-primary-light)] transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      ))}
+      <a href="/JOAN_LEYTON_CV.pdf" download class="btn btn-ghost">
+        Resume
+      </a>
+    </nav>
+
+    <button id="menu-toggle" class="md:hidden text-[var(--color-text-muted)] hover:text-[var(--color-text)]" aria-label="Toggle menu">
+      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden hidden border-t border-[var(--color-border)] bg-[var(--color-background)]/95 backdrop-blur-sm">
+    <nav class="flex flex-col px-6 py-4 gap-4">
+      {links.map(({ label, href }) => (
+        <a href={href} class="mobile-link text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200 py-1">
+          {label}
+        </a>
+      ))}
+      <a href="/JOAN_LEYTON_CV.pdf" download class="mobile-link btn btn-ghost" style="justify-content:center; margin-top:0.5rem;">
+        Resume
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  #navbar.scrolled {
+    background: rgba(9, 9, 11, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar')!;
+  const toggle = document.getElementById('menu-toggle')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+  const iconOpen = document.getElementById('icon-open')!;
+  const iconClose = document.getElementById('icon-close')!;
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  toggle.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden', isOpen);
+    iconOpen.classList.toggle('hidden', !isOpen);
+    iconClose.classList.toggle('hidden', isOpen);
+  });
+
+  document.querySelectorAll('.mobile-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+</script>
