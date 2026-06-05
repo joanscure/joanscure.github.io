@@ -68,6 +68,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     />
   </head>
   <body>
+    <div id="progress-bar" aria-hidden="true"></div>
     <slot />
     <script>
       const observer = new IntersectionObserver(
@@ -84,6 +85,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => {
         observer.observe(el);
       });
+
+      // Scroll progress bar
+      const progressBar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        if (progressBar) progressBar.style.transform = `scaleX(${window.scrollY / max})`;
+      }, { passive: true });
     </script>
   </body>
 </html>
