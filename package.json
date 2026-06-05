@@ -12,12 +12,6 @@
     "astro": "astro",
     "prepare": "husky"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
-  },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
     "@tailwindcss/vite": "^4.1.8",
