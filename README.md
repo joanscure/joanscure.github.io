@@ -2,7 +2,7 @@
 
 Personal portfolio built with Astro 6 and Tailwind CSS v4. Deployed on GitHub Pages via GitHub Actions.
 
-**Live:** [joanleyton.github.io](https://joanleyton.github.io)
+**Live:** [joanscure.github.io](https://joanscure.github.io)
 
 ## Stack
 
